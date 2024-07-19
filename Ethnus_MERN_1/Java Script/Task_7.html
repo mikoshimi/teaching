@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Train Animation</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: Arial, sans-serif;
+      }
+      #animationContainer {
+        width: 400px;
+        height: 200px;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid #000;
+      }
+      #train {
+        position: absolute;
+        bottom: 20px;
+        left: -100px;
+        width: 100px;
+        height: auto;
+      }
+      .smoke {
+        position: absolute;
+        opacity: 0;
+        transition: all 2s;
+      }
+      button {
+        margin: 10px;
+        padding: 5px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="animationContainer">
+      <img id="train" src="Train.jpg" alt="Train" />
+    </div>
+    <h3>Click the following buttons to handle animation</h3>
+    <div>
+      <button onclick="startAnimation()">Start</button>
+      <button onclick="stopAnimation()">Stop</button>
+    </div>
+
+    <script>
+      const train = document.getElementById("train");
+      let animationId;
+      let smokeInterval;
+
+      function createSmoke() {
+        const smoke = document.createElement("div");
+        smoke.className = "smoke";
+        smoke.style.width = Math.random() * 20 + 10 + "px";
+        smoke.style.height = smoke.style.width;
+        smoke.style.borderRadius = "50%";
+        smoke.style.backgroundColor = "rgba(200, 200, 200, 0.7)";
+        smoke.style.left = train.offsetLeft + 80 + "px";
+        smoke.style.bottom = train.offsetTop + 20 + "px";
+        document.getElementById("animationContainer").appendChild(smoke);
+
+        setTimeout(() => {
+          smoke.style.opacity = "1";
+          smoke.style.transform = `translate(${Math.random() * 50 - 25}px, -${
+            Math.random() * 50 + 50
+          }px) scale(2)`;
+        }, 10);
+
+        setTimeout(() => smoke.remove(), 2000);
+      }
+
+      function animateTrain() {
+        let position = -100;
+
+        function move() {
+          position += 2;
+          train.style.left = position + "px";
+
+          if (position > 400) {
+            position = -100;
+          }
+
+          animationId = requestAnimationFrame(move);
+        }
+
+        move();
+        smokeInterval = setInterval(createSmoke, 300);
+      }
+
+      function startAnimation() {
+        if (!animationId) {
+          animateTrain();
+        }
+      }
+
+      function stopAnimation() {
+        if (animationId) {
+          cancelAnimationFrame(animationId);
+          clearInterval(smokeInterval);
+          animationId = null;
+        }
+      }
+    </script>
+  </body>
+</html>

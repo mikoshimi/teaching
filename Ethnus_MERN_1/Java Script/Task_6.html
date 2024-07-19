@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instagram Login</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #fafafa;
+      }
+      .login-container,
+      .signup-container {
+        background-color: white;
+        padding: 20px;
+        border: 1px solid #dbdbdb;
+        border-radius: 1px;
+        width: 300px;
+        margin-bottom: 10px;
+      }
+      h1 {
+        text-align: center;
+        font-weight: normal;
+        margin-bottom: 20px;
+      }
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+        border: 1px solid #dbdbdb;
+        border-radius: 3px;
+        box-sizing: border-box;
+      }
+      button {
+        width: 100%;
+        padding: 8px;
+        background-color: #0095f6;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        margin-top: 10px;
+        cursor: pointer;
+      }
+      .remember-me {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+        font-size: 12px;
+      }
+      .remember-me input {
+        margin-right: 5px;
+      }
+      .forgot-password {
+        font-size: 12px;
+        text-align: right;
+        margin-top: 10px;
+      }
+      .signup-container {
+        text-align: center;
+        font-size: 14px;
+      }
+      a {
+        color: #0095f6;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <h1>Instagram</h1>
+      <form id="loginForm">
+        <input type="text" placeholder="Username" required />
+        <input type="password" placeholder="Password" required />
+        <button type="submit">Log in</button>
+        <div class="remember-me">
+          <input type="checkbox" id="rememberMe" />
+          <label for="rememberMe">Remember me</label>
+        </div>
+        <div class="forgot-password">
+          <a href="#">Forgot Password?</a>
+        </div>
+      </form>
+    </div>
+    <div class="signup-container">
+      Don't have an account? <a href="#">Sign up here.</a>
+    </div>
+
+    <script>
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          alert("Login functionality would be implemented here.");
+        });
+    </script>
+  </body>
+</html>
